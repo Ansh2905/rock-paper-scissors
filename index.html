@@ -1,0 +1,61 @@
+<script>
+    function computerPlay(){
+        let choices = ["Rock", "Paper", "Scissors"];
+        return choices[Math.floor(Math.random()*choices.length)];
+    }
+    function playRound(playerSelection, computerSelection)
+    {
+        fixedPlayerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1).toLowerCase();
+        if(fixedPlayerSelection === computerSelection){
+            return "Tie";
+        }
+        else{
+            if((fixedPlayerSelection === "Rock" && computerSelection === "Scissors") || (fixedPlayerSelection === "Paper" && computerSelection === "Rock") || 
+                (fixedPlayerSelection === "Scissors" && computerSelection === "Paper"))
+            {
+                return "Win";
+            }
+            else{
+                return "Loss";
+            }
+        }
+    }
+    function game()
+    {
+        playerWins = 0;
+        computerWins = 0;
+        for(let i = 0; i < 5; i++)
+        {
+            let computerSelection = computerPlay();
+            let playerSelection = prompt("Enter Rock, Paper or Scissors");
+            let result = playRound(playerSelection, computerSelection);
+            if(result === "Tie"){
+                console.log("Round tied!");
+            }
+            else if(result === "Win"){
+                playerWins++;
+                console.log("You won the round!");
+            }
+            else if(result === "Loss")
+            {
+                computerWins++;
+                console.log("You lost the round");
+            }
+        }
+        if(playerWins == computerWins)
+        {
+            console.log("Game tied!");
+        }
+        else if(playerWins > computerWins)
+        {
+            console.log("You won the game!");
+        }
+        else
+        {
+            console.log("You lost the game!");
+        }
+    }
+    game();
+
+    
+</script>
