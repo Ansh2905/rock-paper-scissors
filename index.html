@@ -1,61 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <meta charset = "UTF-8">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body class = 'blackBackground'>
+    <header>
+        <h1 class = 'gameName'>Rock, Paper, Scissors</h1>
+    </header>
+    <div id = "container">
+        <p class = 'instructions whiteText gameName smallerFont'>First to 5 wins!</p>
+        <p class = 'instructions whiteText gameName smallerFont'>Choose your tool: </p>
+        <img src = "images/rock.png" alt = "Rock" id = "rock" class = "tools instructions ">
+        <img src = images/paper.png alt = "Paper" id = "paper" class = "tools instructions ">
+        <img src = images/scissors.png alt = "Scissors" id = "scissors" class = "tools instructions ">
+    </div>
+</body>
 <script>
     function computerPlay(){
-        let choices = ["Rock", "Paper", "Scissors"];
+        let choices = ["rock", "paper", "scissors"];
         return choices[Math.floor(Math.random()*choices.length)];
     }
-    function playRound(playerSelection, computerSelection)
+
+    let playerWins = 0;
+    let computerWins = 0;
+
+
+    container = document.getElementById('container');
+    const div = document.createElement('div');
+    container.appendChild(div);
+    const score = document.createElement('p');
+    score.classList = "whiteText gameName smallerFont removeAtEnd";
+    score.textContent = "Current score:     You: " + playerWins + "     Computer: " +  computerWins;
+    div.appendChild(score);
+
+
+    const rock = document.getElementById('rock');
+    const paper = document.getElementById('paper');
+    const scissors = document.getElementById('scissors');
+    rock.addEventListener('click', playRound);
+    paper.addEventListener('click', playRound);
+    scissors.addEventListener('click', playRound);
+
+    const roundWinner = document.createElement('p');
+    const gameWinner = document.createElement('p');
+    roundWinner.classList = 'whiteText gameName smallerFont removeAtEnd';
+    gameWinner.classList = 'whiteText gameName smallerFont winnerText';
+
+    function playRound(e)
     {
-        fixedPlayerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1).toLowerCase();
-        if(fixedPlayerSelection === computerSelection){
-            return "Tie";
-        }
-        else{
-            if((fixedPlayerSelection === "Rock" && computerSelection === "Scissors") || (fixedPlayerSelection === "Paper" && computerSelection === "Rock") || 
-                (fixedPlayerSelection === "Scissors" && computerSelection === "Paper"))
-            {
-                return "Win";
-            }
-            else{
-                return "Loss";
-            }
-        }
-    }
-    function game()
-    {
-        playerWins = 0;
-        computerWins = 0;
-        for(let i = 0; i < 5; i++)
+        if(playerWins != 5 && computerWins != 5)
         {
             let computerSelection = computerPlay();
-            let playerSelection = prompt("Enter Rock, Paper or Scissors");
-            let result = playRound(playerSelection, computerSelection);
-            if(result === "Tie"){
-                console.log("Round tied!");
+            let playerSelection = e.target.id;
+            if(playerSelection === computerSelection){
+                roundWinner.textContent = "Tied round!";
             }
-            else if(result === "Win"){
-                playerWins++;
-                console.log("You won the round!");
+            else{
+                if((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "paper" && computerSelection === "rock") || 
+                    (playerSelection === "scissors" && computerSelection === "paper"))
+                {
+                    playerWins++;
+                    roundWinner.textContent = "You won that round!";
+                }
+                else{
+                    computerWins++;
+                    roundWinner.textContent = "You lost that round.";
+                }
             }
-            else if(result === "Loss")
+            if(playerWins != 5 && computerWins != 5)
             {
-                computerWins++;
-                console.log("You lost the round");
+                div.appendChild(roundWinner);
+                score.textContent = "Current score:\nYou: " + playerWins + "  Computer: " +  computerWins;
+                div.appendChild(score);
             }
-        }
-        if(playerWins == computerWins)
-        {
-            console.log("Game tied!");
-        }
-        else if(playerWins > computerWins)
-        {
-            console.log("You won the game!");
-        }
-        else
-        {
-            console.log("You lost the game!");
+            if(playerWins == 5 || computerWins == 5)
+            {
+                instructions = container.querySelectorAll('.instructions');
+                instructions.forEach(instruction => container.removeChild(instruction));
+                remove = div.querySelectorAll('.removeAtEnd');
+                remove.forEach(item => div.removeChild(item));
+                if(playerWins == 5)
+                {
+                    gameWinner.textContent = "You won the game!";
+                }
+                else
+                {
+                    gameWinner.textContent = "You lost the game :(";
+                }
+                div.appendChild(gameWinner);
+            }
         }
     }
-    game();
 
     
 </script>

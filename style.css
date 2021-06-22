@@ -1,0 +1,34 @@
+.gameName
+{
+    padding-top: 50px;
+    display: block;
+    margin: auto;
+    font-size: 45px;
+    font-family: 'Gloria Hallelujah';
+    color: white;
+    text-align: center;
+}
+.blackBackground
+{
+    background-color: black;
+}
+.whiteText
+{
+    color: white;
+}
+.tools
+{
+    padding-top: 50px;
+    padding-left: 225px;
+    height: 300px;
+    cursor: pointer;
+}
+.smallerFont
+{
+    font-size: 28px;
+}
+.winnerText
+{
+    font-size: 60px;
+    padding-top: 300px;;
+}

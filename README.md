@@ -1,1 +1,1 @@
-This program allows a user to play 5 rounds of rock, paper, scissors with the computer. After reach round, the winner of that round is declared. After 5 rounds, the one who has won most rounds is declared as the overall winner.
+This program allows a user to play rock, paper, scissors against the computer using the given buttons. After each round, the winner of that round is declared. The first to win 5 rounds is the overall winner of the game.
