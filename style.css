@@ -18,8 +18,8 @@
 }
 .tools
 {
-    padding-top: 50px;
-    padding-left: 225px;
+    margin-top: 50px;
+    margin-left: 225px;
     height: 300px;
     cursor: pointer;
 }
