@@ -23,6 +23,10 @@
     height: 300px;
     cursor: pointer;
 }
+.tools:hover
+{
+    transform: scale(1.2);
+}
 .smallerFont
 {
     font-size: 28px;
