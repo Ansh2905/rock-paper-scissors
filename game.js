@@ -22,7 +22,6 @@ const scissors = document.getElementById('scissors');
 rock.addEventListener('click', playRound);
 paper.addEventListener('click', playRound);
 scissors.addEventListener('click', playRound);
-
 const roundWinner = document.createElement('p');
 const gameWinner = document.createElement('p');
 roundWinner.classList = 'whiteText gameName smallerFont removeAtEnd';
